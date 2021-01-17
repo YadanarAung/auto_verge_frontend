@@ -1,0 +1,19 @@
+<div>
+  <div class="alert alert-dismissible fade show" role="alert" *ngIf="showMessage" [class.alert-danger]="!isSuccess"
+    [class.alert-success]="isSuccess">
+    {{message}}
+  </div>
+ <form class="form-signin" action="#" #newUser="ngForm" (ngSubmit)="update(newUser)" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal text-center font-color-white">Add New User</h1>
+    <input type="text" id="inputName" class="form-control mg-end-sm bg-gray" placeholder="Name" required
+      name="name" [(ngModel)]="user.name">
+    
+    <input type="email" id="inputEmail" class="form-control mg-end-sm bg-gray" placeholder="Email" required
+      name="email" [(ngModel)]="user.email">
+
+    <input type="password" id="inputPassword" class="form-control mg-end-sm bg-gray" placeholder="Password" required
+      name="password" [(ngModel)]="user.password">
+    
+      <button class="btn btn-lg btn-dark btn-block border-color mg-end-md" type="submit">Save</button>
+ </form>
+</div>

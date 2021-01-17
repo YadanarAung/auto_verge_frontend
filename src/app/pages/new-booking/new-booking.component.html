@@ -1,0 +1,38 @@
+<div>
+  <div class="alert alert-dismissible fade show" role="alert" *ngIf="showMessage" [class.alert-danger]="!isSuccess"
+    [class.alert-success]="isSuccess">
+    {{message}}
+  </div>
+  <form class="form-signin" action="#" #newBooking="ngForm" (ngSubmit)="update(newBooking)" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal text-center font-color-white">Add New Booking</h1>
+
+    <label for="inputEmail" class="mg-end-none">Customer <span class="star">*</span></label>
+    <select class="form-control mg-end-sm form-dropdown bg-gray" name="customer_id" [(ngModel)]="booking.customer_id">
+      <option [value]="customer.id" *ngFor="let customer of customers">{{customer.name}}</option>
+    </select>
+
+    <label for="inputEmail" class="mg-end-none">Car No <span class="star">*</span></label>
+    <input type="text" id="inputCarNo" class="form-control mg-end-sm bg-gray" placeholder="Car No" required
+      name="car_no" [(ngModel)]="booking.car_no">
+
+    <label for="inputEmail" class="mg-end-none">Services <span class="star">*</span></label>
+    <select multiple class="form-control mg-end-sm form-dropdown bg-gray" name="service_id"
+      [(ngModel)]="booking.service_id">
+      <option [value]="service.id" *ngFor="let service of services">{{service.name}}</option>
+    </select>
+
+    <label for="inputEmail" class="mg-end-none">Duration <span class="star">*</span></label>
+    <input type="number" id="inputDuration" class="form-control mg-end-sm bg-gray"  min="1" max="30" placeholder="Duration" required
+      name="duration" [(ngModel)]="booking.duration">
+
+    <label for="inputEmail" class="mg-end-none">Booking Date<span class="star">*</span></label>
+    <input type="date" id="inputName" class="form-control mg-end-sm bg-gray" placeholder="Name" required
+      name="booking_date" [(ngModel)]="booking.booking_date" >
+
+    <label for="inputEmail" class="mg-end-none">Note <span class="star">*</span></label>
+    <textarea id="inputNote" class="form-control mg-end-sm bg-gray" name="note" [(ngModel)]="booking.note">
+    </textarea>
+
+    <button class="btn btn-lg btn-dark btn-block border-color mg-end-md" type="submit">Save</button>
+  </form>
+</div>

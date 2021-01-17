@@ -1,0 +1,9 @@
+.nav-item a{
+    color:white;
+    text-decoration: none;
+}
+
+hr{
+   border-color: rgb(112, 93, 77);
+   height:5px;
+}

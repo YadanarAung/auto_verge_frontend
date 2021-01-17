@@ -1,0 +1,161 @@
+<div style="padding-left:20px">
+  <!-- <h1 class="h3 mb-3 font-weight-normal text-center font-color-white">Profile</h1> -->
+
+
+  <!-- <div class="form-group row">
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">First Name</label>
+      <div class="col-xs-9">
+        <label class="col-xs-3 col-form-label mr-2 font-color-white"> : &nbsp; {{user.first_name}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Last Name</label>
+      <div class="col-xs-9">
+        <label class="col-xs-3 col-form-label mr-2 font-color-white"> : &nbsp; {{user.last_name}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Full Name</label>
+      <div class="col-xs-9">
+        <label class="col-xs-3 col-form-label mr-2 font-color-white"> : &nbsp; {{user.full_name}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Country</label>
+      <div class="col-xs-9">
+        <label class="col-xs-3 col-form-label mr-2 font-color-white"> : &nbsp; {{user.country_name}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Zip Code</label>
+      <div class="col-xs-9">
+        <label class="col-xs-3 col-form-label mr-2 font-color-white"> : &nbsp; {{user.zip_code}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Email</label>
+      <div class="col-xs-9">
+        <label class="col-xs-3 col-form-label mr-2 font-color-white"> : &nbsp; {{user.email}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Phone</label>
+      <div class="col-xs-9">
+        <label class="col-xs-3 col-form-label mr-2 font-color-white"> : &nbsp; {{user.phone}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Address</label>
+      <div class="col-xs-9">
+        <label class="col-xs-3 col-form-label mr-2 font-color-white"> : &nbsp; {{user.address}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-5 col-form-label mr-2 font-color-white" style="width:150px;">NRC</label>
+      <div class="col-xs-7">
+        <label class="col-form-label mr-2 font-color-white"> : &nbsp; {{user.nrc}} </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-5 col-form-label mr-2 font-color-white" style="width:150px;">MPS Registration No</label>
+      <div class="col-xs-7">
+        <label class="col-form-label mr-2 font-color-white"> : &nbsp;
+          {{user.mps_register_no? user.mps_register_no: '-' }} </label>
+      </div>
+    </div> -->
+
+  <div>
+    <div class="alert alert-dismissible fade show" role="alert" *ngIf="showMessage" [class.alert-danger]="!isSuccess"
+      [class.alert-success]="isSuccess">
+      {{message}}
+    </div>
+    <form class="form-signin" action="#" (ngSubmit)="update()" method="POST">
+      <h1 class="h3 mb-3 font-weight-normal text-center font-color-white">Edit Profile</h1>
+
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">First Name</label>
+      <input type="text" class="form-control mg-end-sm bg-gray" placeholder="First Name" name="first_name"
+        [(ngModel)]="user.first_name"  [formControl]="userInfoFormValidation.controls['first_name']">
+
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['first_name'].valid &&
+        userInfoFormValidation.controls['first_name'].touched"> First Name is required!
+      </div>
+
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Last Name</label>
+      <input type="text" class="form-control mg-end-sm bg-gray" placeholder="Last Name" name="last_name"
+        [(ngModel)]="user.last_name"  [formControl]="userInfoFormValidation.controls['last_name']">
+
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['last_name'].valid &&
+        userInfoFormValidation.controls['last_name'].touched"> Last Name is required!
+      </div>
+
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Full Name</label>
+      <input type="text" class="form-control mg-end-sm bg-gray" placeholder="Full Name" name="full_name"
+        [(ngModel)]="user.full_name"  [formControl]="userInfoFormValidation.controls['full_name']">
+
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['full_name'].valid &&
+        userInfoFormValidation.controls['full_name'].touched"> Full Name is required!
+      </div>
+
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Country</label>
+      <select class="form-control mg-end-sm form-dropdown bg-gray" name="country_id" [(ngModel)]="user.country_id"
+        [formControl]="userInfoFormValidation.controls['country_id']">
+        <option [value]="country.id" *ngFor="let country of countries">{{country.name}}</option>
+      </select>
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['country_id'].valid &&
+        userInfoFormValidation.controls['country_id'].touched"> Country is required!
+      </div>
+
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Zip Code</label>
+      <input type="text" class="form-control mg-end-sm bg-gray" placeholder="Zip Code" name="zip_code"
+        [(ngModel)]="user.zip_code"  [formControl]="userInfoFormValidation.controls['zip_code']">
+
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['zip_code'].valid &&
+        userInfoFormValidation.controls['zip_code'].touched"> Zip Code is required!
+      </div>
+
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Phone</label>
+      <input type="text" class="form-control mg-end-sm bg-gray" placeholder="Phone" name="phone"
+        [(ngModel)]="user.phone"  [formControl]="userInfoFormValidation.controls['phone']">
+
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['phone'].valid &&
+        userInfoFormValidation.controls['phone'].touched"> Phone is required!
+      </div>
+
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">Address</label>
+      <input type="text" class="form-control mg-end-sm bg-gray" placeholder="Address" name="address"
+        [(ngModel)]="user.address"  [formControl]="userInfoFormValidation.controls['address']">
+
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['address'].valid &&
+        userInfoFormValidation.controls['address'].touched"> Address is required!
+      </div>
+
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">NRC</label>
+      <input type="text" class="form-control mg-end-sm bg-gray" placeholder="NRC" name="nrc"
+        [(ngModel)]="user.nrc"  [formControl]="userInfoFormValidation.controls['nrc']">
+
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['nrc'].valid &&
+        userInfoFormValidation.controls['nrc'].touched"> NRC is required!
+      </div>
+     
+      <label class="col-xs-3 col-form-label mr-2 font-color-white" style="width:150px;">MPS Register No</label>
+      <input type="text" class="form-control mg-end-sm bg-gray" placeholder="MPS Register No"
+        name="mps_register_no" [(ngModel)]="user.mps_register_no"  [formControl]="userInfoFormValidation.controls['mps_register_no']">
+
+      <div class="error font-xs" *ngIf="!userInfoFormValidation.controls['mps_register_no'].valid &&
+        userInfoFormValidation.controls['mps_register_no'].touched"> MPS Register No is required!
+      </div>
+
+      <button class="btn btn-lg btn-dark btn-block border-color mg-end-md" type="submit" [disabled]="!userInfoFormValidation.valid"
+      >Update</button>
+    </form>
+  </div>
+</div>

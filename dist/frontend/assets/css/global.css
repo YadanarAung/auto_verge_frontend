@@ -1,0 +1,85 @@
+.mg-end-sm {
+  margin-bottom: 10px;
+}
+
+.mg-top-sm {
+  margin-top: 10px;
+}
+
+.mg-end-none {
+  margin-bottom: 0px;
+}
+
+.mg-top-lg {
+  margin-top: 30px;
+}
+
+.mg-end-md {
+  margin-bottom: 20px;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+
+.no-margin {
+  margin: 0px !important;
+}
+
+.padding-top-sm {
+  padding-top: 10px;
+}
+
+app-home,
+app-edit-profile,
+app-change-password {
+  width: 100%;
+}
+
+/*color*/
+.font-color-white {
+  color: #ffffff
+}
+
+.bg-dark {
+  background: rgb(0, 0, 1) !important;
+  /* background:black !important; */
+}
+
+.bg-gray {
+  background: rgb(15, 16, 16) !important;
+}
+
+.border-color {
+  border-color: rgb(112, 93, 77);
+}
+
+.navbar-dark {
+  background: rgb(28, 30, 38);
+}
+
+/*Form*/
+.form-signin input,
+.form-signin select {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  /* border: none; */
+  height: 45px !important;
+  color: white;
+}
+
+.star,
+.error {
+  color: red;
+}
+
+.fileError {
+ /* border: 1px solid red !important; */
+ border-color:red !important;
+
+}
+
+input[type="text"],
+input[type="email"] {
+  color: white !important;
+}

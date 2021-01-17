@@ -1,0 +1,32 @@
+ <div class="alert alert-dismissible fade show" role="alert" *ngIf="showMessage" [class.alert-danger]="!isSuccess"
+   [class.alert-success]="isSuccess">
+   {{message}}
+ </div>
+<div class="bg-gray container mg-top-lg" style="width:400px">
+  <form class="form-signin font-color-white" action="#" (ngSubmit)="login()" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
+    <label for="inputEmail" class="mg-end-none">Email address <span class="star">*</span></label>
+    <input type="email" id="inputEmail" class="form-control bg-dark" placeholder="Email address" name="email"
+      [(ngModel)]="user.email" [formControl]="loginFormValidation.controls['email']">
+
+      <div class="error font-xs" *ngIf="loginFormValidation.controls['email'].hasError('required') &&
+          loginFormValidation.controls['email'].touched">
+        Email is required
+      </div>
+
+      <div class="error font-xs"
+        *ngIf="loginFormValidation.controls['email'].hasError('email') && loginFormValidation.controls['email'].touched">
+        Invalid Email Format
+      </div>
+    <label for="inputPassword" class="mg-end-none mg-top-sm">Password <span class="star">*</span></label>
+    <input type="password" id="inputPassword" class="form-control bg-dark" placeholder="Password" name="password"
+      [(ngModel)]="user.password" [formControl]="loginFormValidation.controls['password']">
+       <div class="error font-xs" *ngIf="loginFormValidation.controls['password'].hasError('required') &&
+          loginFormValidation.controls['password'].touched">
+         Password is required
+       </div>
+      <br />
+      <button class="btn btn-lg btn-dark btn-block border-color mg-end-md" type="submit"
+        [disabled]="!loginFormValidation.valid">Sign in</button>
+  </form>
+</div>

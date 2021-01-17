@@ -1,0 +1,207 @@
+<div>
+  <div class="alert alert-dismissible fade show" role="alert" *ngIf="showMessage" [class.alert-danger]="!isSuccess"
+    [class.alert-success]="isSuccess">
+    {{message}}
+  </div>
+  <form class="form-signin" action="#" #registerForm="ngForm" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal text-center font-color-white">Add Payslip</h1>
+    <div class="col-md-3 margin-auto">
+      <div class="card mb-3 box-shadow">
+        <img class="card-img-top" [src]="photo.previewUrl" alt="Card image cap">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="custom-file">
+              <label for="upload-photo" class="font-color-white btn btn-sm btn-dark btn-inline border-color">
+                Browse
+              </label>
+              <input type="file" class="custom-file-input bg-dark" id="upload-photo" class="upload-photo"
+                (change)="paymentFileProgress($event)">
+
+                 <button (click)="uploadPayslip()"
+                    class="font-color-white btn btn-sm btn-dark btn-inline border-color float-right">
+                   Upload
+                 </button>
+
+              <!-- <label class="font-color-white btn btn-sm btn-dark btn-inline border-color float-right">
+                Delete
+              </label> -->
+              <!-- <input type="file" class="custom-file-input bg-dark" id="customFile"
+                (change)="paymentFileProgress($event)"> -->
+              <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <button class="btn btn-lg btn-dark btn-block border-color mg-end-md" type="button"
+      (click)="uploadPayslip()">Upload</button> -->
+  </form>
+</div>
+<div *ngFor="let contest of contests; let i=index">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2 font-color-white">{{contest.name}}</h1>
+  </div>
+
+  <form action="#">
+    <div class="album py-5">
+      <div class="container">
+        <div class="spinner-border text-primary text-center" role="status" *ngIf="contest.showLoading">
+          <span>Uploading...</span>
+        </div>
+        <br />
+        <div class="row">
+
+          <div class="col-md-3">
+            <div class="card mb-3 box-shadow" [class.fileError]="contest.competition_photo_1.error">
+              <!-- <img class="card-img-top" [src]="contest.competition_photo_1.previewUrl" alt="Card image cap"> -->
+              <div class="card-img-top"
+                [ngStyle]="{'background-image': 'url(' + contest.competition_photo_1.previewUrl + ')'}">
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <input type="text" id="inputEmail" class="form-control" placeholder="Title"
+                    [class.fileError]="contest.competition_photo_1.nameError"
+                    [(ngModel)]="contest.competition_photo_1.name" name="contest.competition_photo_1.name" (focus)="hideError(contest.competition_photo_1)">
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="custom-file">
+                    <label for="upload-photo-{{i}}-1"
+                      class="font-color-white btn btn-sm btn-dark btn-inline border-color">
+                      Browse
+                    </label>
+                    <input type="file" class="custom-file-input bg-dark upload-photo" id="upload-photo-{{i}}-1"
+                      (change)="fileProgress($event, contest.competition_photo_1)">
+
+                    <button class="font-color-white btn btn-sm btn-dark btn-inline border-color float-right"
+                      (click)="deleteImage(contest.competition_photo_1, contest.competition_id, contest.main_contest.id)">
+                      Delete
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card mb-3 box-shadow" [class.fileError]="contest.competition_photo_2.error">
+              <div class="card-img-top"
+                [ngStyle]="{'background-image': 'url(' + contest.competition_photo_2.previewUrl + ')'}">
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <input type="text" id="inputEmail" class="form-control bg-dark" placeholder="Title"
+                    [class.fileError]="contest.competition_photo_2.nameError"
+                    [(ngModel)]="contest.competition_photo_2.name" name="contest.competition_photo_2.name" (focus)="hideError(contest.competition_photo_2)">
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="custom-file">
+                    <label for="upload-photo-{{i}}-2"
+                      class="font-color-white btn btn-sm btn-dark btn-inline border-color">
+                      Browse
+                    </label>
+                    <input type="file" class="custom-file-input bg-dark upload-photo" id="upload-photo-{{i}}-2"
+                      (change)="fileProgress($event, contest.competition_photo_2)">
+
+                    <button class="font-color-white btn btn-sm btn-dark btn-inline border-color float-right"
+                      (click)="deleteImage(contest.competition_photo_2, contest.competition_id, contest.main_contest.id)">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card mb-3 box-shadow" [class.fileError]="contest.competition_photo_3.error">
+              <div class="card-img-top"
+                [ngStyle]="{'background-image': 'url(' + contest.competition_photo_3.previewUrl + ')'}">
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <input type="text" id="inputEmail" class="form-control bg-dark" placeholder="Title"
+                    [class.fileError]="contest.competition_photo_3.nameError"
+                    [(ngModel)]="contest.competition_photo_3.name" name="contest.competition_photo_3.name" (focus)="hideError(contest.competition_photo_3)">
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="custom-file">
+                    <label for="upload-photo-{{i}}-3"
+                      class="font-color-white btn btn-sm btn-dark btn-inline border-color">
+                      Browse
+                    </label>
+                    <input type="file" class="custom-file-input bg-dark upload-photo" id="upload-photo-{{i}}-3"
+                      (change)="fileProgress($event, contest.competition_photo_3)">
+
+                    <button class="font-color-white btn btn-sm btn-dark btn-inline border-color float-right"
+                      (click)="deleteImage(contest.competition_photo_3, contest.competition_id, contest.main_contest.id)">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card mb-3 box-shadow" [class.fileError]="contest.competition_photo_4.error">
+              <div class="card-img-top"
+                [ngStyle]="{'background-image': 'url(' + contest.competition_photo_4.previewUrl + ')'}">
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <input type="text" id="inputEmail" class="form-control bg-dark" placeholder="Title"
+                    [class.fileError]="contest.competition_photo_4.nameError"
+                    [(ngModel)]="contest.competition_photo_4.name" name="contest.competition_photo_4.name" (focus)="hideError(contest.competition_photo_4)">
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="custom-file">
+                    <label for="upload-photo-{{i}}-4"
+                      class="font-color-white btn btn-sm btn-dark btn-inline border-color">
+                      Browse
+                    </label>
+                    <input type="file" class="custom-file-input bg-dark upload-photo" id="upload-photo-{{i}}-4"
+                      (change)="fileProgress($event, contest.competition_photo_4)">
+
+                    <button class="font-color-white btn btn-sm btn-dark btn-inline border-color float-right"
+                      (click)="deleteImage(contest.competition_photo_4, contest.competition_id, contest.main_contest.id)">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="text-right">
+        <button class="btn btn-lg btn-dark btn-inline border-color" (click)="saveCompetition(contest)"
+          [disabled]="contest.disableButton">Submit</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<!-- Small modal -->
+<div class="modal bd-example-modal-sm" tabindex="-1" role="dialog" id="dialogMsg">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideDialog()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{errorMessage}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Small modal -->

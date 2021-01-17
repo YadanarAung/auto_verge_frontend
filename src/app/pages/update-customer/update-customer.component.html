@@ -1,0 +1,16 @@
+<div>
+  <div class="alert alert-dismissible fade show" role="alert" *ngIf="showMessage" [class.alert-danger]="!isSuccess"
+    [class.alert-success]="isSuccess">
+    {{message}}
+  </div>
+ <form class="form-signin" action="#" #newCustomer="ngForm" (ngSubmit)="update(newCustomer)" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal text-center font-color-white">Update Customer</h1>
+    <input type="text" id="inputName" class="form-control mg-end-sm bg-gray" placeholder="Name" required
+      name="name" [(ngModel)]="customer.name">
+    
+    <input type="text" id="inputPhoneNo" class="form-control mg-end-sm bg-gray" placeholder="Phone No" required
+      name="phone_no" [(ngModel)]="customer.phone_no">
+      
+      <button class="btn btn-lg btn-dark btn-block border-color mg-end-md" type="submit">Update</button>
+ </form>
+</div>

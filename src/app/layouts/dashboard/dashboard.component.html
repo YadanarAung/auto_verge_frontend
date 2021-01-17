@@ -1,0 +1,87 @@
+
+
+<!--Navbar-->
+<nav class="navbar navbar-light light-blue lighten-4">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#" style="color:white">{{loggedInUser?.name}}</a>
+
+  <a class="nav-link font-color-white d-none d-md-block d-lg-block d-xl-block navbar-brand" href="#" (click)="logout()"
+    style="color:white">Sign out</a>
+
+  <!-- Collapse button -->
+  <button class="d-md-none d-lg-none d-xl-none navbar-toggler" type="button" data-toggle="collapse"
+    data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/dashboard']">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/dashboard/customers']">Customers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/dashboard/services']">Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/dashboard/bookings']">Bookings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="logout()">Sign Out</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+<div class="container-fluid bg-gray padding-top-sm">
+  <div class="row no-margin">
+    <nav class="col-md-2 d-none d-md-block bg-gray sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="active" href="#" [routerLink]="['/dashboard']">
+              Users
+            </a>
+            <hr>
+          </li>
+
+          <li class="nav-item">
+            <a class="active" href="#" [routerLink]="['/dashboard/customers']">
+              Customers
+            </a>
+            <hr>
+          </li>
+
+          <li class="nav-item">
+            <a class="" href="#" [routerLink]="['/dashboard/services']">
+              Services
+            </a>
+            <hr>
+          </li>
+
+          <li class="nav-item">
+            <a class="" href="#" [routerLink]="['/dashboard/bookings']">
+              Bookings
+            </a>
+            <hr>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 bg-dark">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
