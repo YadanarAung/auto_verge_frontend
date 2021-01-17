@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Project Instructions for frontend -option one
+- download frontend.zip file under dist folder and extract and put under your apache or nginx document root  folder.
+- browse index.html file from browser.
+
+## Project Instructions for frontend - option two
+- install angular cli.
+- download frontend project
+- run "npm install"
+- run "ng serve"
